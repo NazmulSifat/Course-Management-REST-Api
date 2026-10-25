@@ -143,3 +143,14 @@ The project follows the NestJS **Module–Controller–Service architecture**, k
 - Version control using Git and GitHub
 
 This project is designed for learning and practicing the fundamentals of NestJS and REST API development. In the current version, the endpoints return predefined string responses. Database integration and actual course creation, updating, and deletion functionality have not yet been implemented.
+
+
+API Testing Checklist
+Base URL: http://localhost:3000
+#	Method	Endpoint	Expected Response
+1	GET	/courses	my all course
+2	GET	/courses/10	Course with ID: 10 - from Service
+3	POST	/courses/create	Create Course Successful
+4	PUT	/courses/update/10	Update Course 10 - from Service
+5	PATCH	/courses/patch/10	Patch Course 10 - from Service
+6	DELETE	/courses/delete/10	Delete Course 10 - from Service
