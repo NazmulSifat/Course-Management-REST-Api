@@ -124,3 +124,22 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+
+# Course Management REST API (NestJS)
+
+This project is a beginner-friendly Course Management REST API built with NestJS. It demonstrates the implementation of the fundamental HTTP methods used in RESTful API development: GET, POST, PUT, PATCH, and DELETE.
+
+The project follows the NestJS **Module–Controller–Service architecture**, keeping request handling in the Controller and response logic in the Service layer.
+
+**Key Features and Concepts:**
+- NestJS project structure and Module–Controller–Service architecture
+- **GET:** Retrieve all courses or a specific course by ID
+- **POST:** Handle course creation requests
+- **PUT:** Handle full course update requests
+- **PATCH:** Handle partial course update requests
+- **DELETE:** Handle course deletion requests
+- Route parameter handling
+- API testing with Postman
+- Version control using Git and GitHub
+
+This project is designed for learning and practicing the fundamentals of NestJS and REST API development. In the current version, the endpoints return predefined string responses. Database integration and actual course creation, updating, and deletion functionality have not yet been implemented.
