@@ -12,11 +12,23 @@ export class AppService
 */
 
 getAllCourses(): string {
-  return 'i get all course from sifat';
+  return 'my all course';
 }
 
 getCourseById(id: string): string {
-  return `Get Course with ID: ${id} - from Service`;
+  return `Course with ID: ${id} - from Service`;
+}
+
+createCourse(): string {
+  return 'Create Course Successful';
+}
+
+updateCourse(id: string): string {
+  return `Update Course ${id} - from Service`;
+}
+
+patchCourse(id: string): string {
+  return `Patch Course ${id} - from Service`;
 }
 
 }
