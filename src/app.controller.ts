@@ -1,5 +1,7 @@
-import { Controller, Get, Param ,Post, Put , Patch, Delete } from '@nestjs/common';
+import { Controller,Body, Get, Param ,Post, Put , Patch, Delete } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import { CreateCourseDto } from './dto/create-course.dto.js';
+
 
 @Controller('courses')
 export class AppController {
@@ -12,6 +14,12 @@ export class AppController {
   }
     */
 
+
+  @Post('create')
+  createCourse(@Body() dto: CreateCourseDto) {
+    return this.appService.createCourse(dto);
+  }
+
   @Get()
 getAllCourses(): string {
   return this.appService.getAllCourses();
@@ -22,10 +30,7 @@ getCourseById( @Param ('id') id: string): string {
   return this.appService.getCourseById(id);
 }
 
-@Post('create')
-createCourse(): string {
-  return this.appService.createCourse();
-}
+
 
 @Put('update/:id')
 updateCourse(@Param('id') id: string): string {
