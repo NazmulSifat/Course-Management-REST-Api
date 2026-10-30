@@ -1,19 +1,20 @@
-import { Controller,Body, Get, Param ,Post, Put , Patch, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Body,
+  Get,
+  Param,
+  Post,
+  Patch,
+  Delete,
+} from '@nestjs/common';
+
 import { AppService } from './app.service.js';
 import { CreateCourseDto } from './dto/create-course.dto.js';
-
+import { UpdateCourseDto } from './dto/update-course.dto.js';
 
 @Controller('courses')
 export class AppController {
   constructor(private readonly appService: AppService) {}
-
-/*
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
-  }
-    */
-
 
   @Post('create')
   createCourse(@Body() dto: CreateCourseDto) {
@@ -21,30 +22,22 @@ export class AppController {
   }
 
   @Get()
-getAllCourses(): string {
-  return this.appService.getAllCourses();
-}
+  getAllCourses() {
+    return this.appService.getAllCourses();
+  }
 
-@Get(':id')
-getCourseById( @Param ('id') id: string): string {
-  return this.appService.getCourseById(id);
-}
+  @Get(':id')
+  getCourseById(@Param('id') id: string) {
+    return this.appService.getCourseById(id);
+  }
 
+  @Patch(':id')
+  updateCourse(
+    @Param('id') id: string,
+    @Body() updateCourseDto: UpdateCourseDto,
+  ) {
+    return this.appService.updateCourse(id, updateCourseDto);
+  }
 
-
-@Put('update/:id')
-updateCourse(@Param('id') id: string): string {
-  return this.appService.updateCourse(id);
-}
-
-@Patch('patch/:id')
-patchCourse(@Param('id') id: string): string {
-  return this.appService.patchCourse(id);
-}
-
-@Delete('delete/:id')
-deleteCourse(@Param('id') id: string): string {
-  return this.appService.deleteCourse(id);
-}
-
+  
 }

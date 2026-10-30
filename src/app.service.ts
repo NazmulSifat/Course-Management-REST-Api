@@ -1,49 +1,60 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCourseDto } from './dto/create-course.dto.js';
-
+import { UpdateCourseDto } from './dto/update-course.dto.js';
 
 @Injectable()
-export class AppService 
-{
-/*
-{
-  getHello(): string {
-    return 'Hello World!';
+export class AppService {
+
+private courses: (CreateCourseDto & { id: number })[] = [];
+  private nextId = 1;
+
+  createCourse(dto: CreateCourseDto) {
+    const newCourse = {
+      id: this.nextId++,
+      ...dto,
+    };
+
+    this.courses.push(newCourse);
+
+    return {
+      message: 'Course created successfully',
+      data: newCourse,
+    };
   }
-}
-*/
 
-getAllCourses(): string {
-  return 'taz';
-}
+  getAllCourses() {
+    return this.courses;
+  }
 
-getCourseById(id: string): string {
-  return `Course with ID: ${id} - from Service`;
-}
+  getCourseById(id: string) {
+    const course = this.courses.find(
+      (course) => course.id === Number(id),
+    );
 
+    if (!course) {
+      throw new NotFoundException('Course not found');
+    }
 
+    return course;
+  }
 
-updateCourse(id: string): string {
-  return `Update Course ${id} - from Service`;
-}
+  updateCourse(id: string, dto: UpdateCourseDto) {
+    const courseIndex = this.courses.findIndex(
+      (course) => course.id === Number(id),
+    );
 
-patchCourse(id: string): string {
-  return `Patch Course ${id} - from Service`;
-}
+    if (courseIndex === -1) {
+      throw new NotFoundException('Course not found');
+    }
 
-deleteCourse(id: string): string {
-  return `Delete Course ${id} - from Service`;
-}
+    this.courses[courseIndex] = {
+      ...this.courses[courseIndex],
+      ...dto,
+    };
 
-
-
-// AppService class-এর ভেতরে যোগ করো
-createCourse(dto: CreateCourseDto) {
-  return {
-    message: 'Congratulations! Your Course created successfully',
-    data: dto,
-  };
-}
-
-
+    return {
+      message: 'Course updated successfully',
+      data: this.courses[courseIndex],
+    };
+  }
 }
